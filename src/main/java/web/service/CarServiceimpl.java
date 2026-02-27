@@ -22,7 +22,17 @@ public class CarServiceimpl implements CarService {
     }
 
     @Override
-    public List<Car> getCars(int count) {
-        return carDao.getCars(count);
+    public List<Car> getCars(Integer count) {
+        List<Car> carsToShow;
+        if (count == null) {
+            carsToShow = carDao.getAllCars();
+        } else {
+            if (count >= 5) {
+                carsToShow = carDao.getAllCars();
+            } else {
+                carsToShow = carDao.getCars(count);
+            }
+        }
+        return carsToShow;
     }
 }
